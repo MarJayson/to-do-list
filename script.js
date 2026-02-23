@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   addTaskButton.addEventListener("click", () => {
     const taskText = todoInput.value.trim();
+
     if (taskText === "") return;
 
     const newTask = {
@@ -16,17 +17,25 @@ document.addEventListener("DOMContentLoaded", () => {
       text: taskText,
       completed: false,
     };
+
     tasks.push(newTask);
+
     saveTasks();
+
     renderTask(newTask);
+
     todoInput.value = "";
+
     console.log(tasks);
   });
 
   function renderTask(task) {
     const li = document.createElement("li");
+
     li.setAttribute("data-id", task.id);
+
     if (task.completed) li.classList.add("completed");
+
     li.innerHTML = `<span>${task.text}</span>
    <button>delete</button>`;
 
@@ -48,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function saveTasks() {
+    // Save tasks array as a string in localStorage
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 });
